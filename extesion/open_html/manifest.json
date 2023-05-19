@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "open_html",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+"host_permissions": [
+    "file:///*"
+],
+ "content_scripts": [
+   {
+     "matches": ["https://www.google.com/*"],
+     "js": ["content_script.js"]
+   }
+ ],
+  "web_accessible_resources": [
+    {
+      "resources": ["alert.html"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
+}
