@@ -1,0 +1,5 @@
+function createTxtFile(){
+  file = DriveApp.createFile('test.txt', 'test', MimeType.PLAIN_TEXT);
+  const folder_gas = DriveApp.getFolderById("1GPNE4dwEBeHjPQnVItDD8kzGUAaQZACB");
+  DriveApp.getFileById(file.getId()).moveTo(folder_gas);
+}
