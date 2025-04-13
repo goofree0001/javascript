@@ -1,5 +1,10 @@
 function createTxtFile(){
-  var targetFolderId = "1GPNE4dwEBeHjPQnVItDD8kzGUAaQZACB";
+//  var targetFolderId = "1GPNE4dwEBeHjPQnVItDD8kzGUAaQZACB";
+  const scriptId = ScriptApp.getScriptId();
+  var file = DriveApp.getFileById(scriptId);
+  var folders = file.getParents();
+  var folder = folders.next();
+  var targetFolderId = folder.getId();
 
   var contents = DriveApp.getFolderById(targetFolderId)
   .getFilesByName('read_test.txt')
@@ -18,9 +23,8 @@ function createTxtFile(){
     }  
   }
 
-/*
   var file = DriveApp.createFile('write_test.txt', 'test', MimeType.PLAIN_TEXT);
   var folder_temp = DriveApp.getFolderById(targetFolderId);
   DriveApp.getFileById(file.getId()).moveTo(folder_temp);
-*/
+
 }
