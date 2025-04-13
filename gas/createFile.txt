@@ -1,5 +1,5 @@
 function createTxtFile(){
-//  var targetFolderId = "1GPNE4dwEBeHjPQnVItDD8kzGUAaQZACB";
+
   const scriptId = ScriptApp.getScriptId();
   var file = DriveApp.getFileById(scriptId);
   var folders = file.getParents();
@@ -13,17 +13,16 @@ function createTxtFile(){
   .getDataAsString()
   .split(/[\s]+/);
 
+  const reg = /test([0-9])/;
+  var buf = "";
   for (var line_temp of contents) {
-    const reg = /test([0-9])/;
-
     if (reg.test(line_temp) == true) {
         result = line_temp.match(reg);
-        console.log(result[1]);  
-
+        buf = buf + result[1] + "\n";
     }  
   }
 
-  var file = DriveApp.createFile('write_test.txt', 'test', MimeType.PLAIN_TEXT);
+  var file = DriveApp.createFile('write_test.txt', buf, MimeType.PLAIN_TEXT);
   var folder_temp = DriveApp.getFolderById(targetFolderId);
   DriveApp.getFileById(file.getId()).moveTo(folder_temp);
 
